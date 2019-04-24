@@ -61,8 +61,11 @@ namespace BuildTurboCdPcePkg
                 var fileName = columns[2];
 
                 combinedName = $"{directory}/{fileName}";
-                var fileData = GetFileData(combinedName);
-                toWrite.AddRange(BuildFileData(fileData, combinedName));
+                if (File.Exists(combinedName))
+                {
+                    var fileData = GetFileData(combinedName);
+                    toWrite.AddRange(BuildFileData(fileData, combinedName));
+                }
             }
 
             //write the file
